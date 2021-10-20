@@ -1,18 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <h3>My home</h3>
+  <button @click="addJoke">
+    Add Joke
+  </button>
+  <h3>{{ joke }}</h3>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+  methods: {
+    ...mapActions({ addJoke: "setCurrentJoke" }),
+    // addJoke() {
+    //   this.$store.dispatch("setCurrentJoke");
+    // }
+  },
+  computed: {
+    ...mapGetters({ joke: "getCurrentJoke" }),
+  },
+};
 </script>
